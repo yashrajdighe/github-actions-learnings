@@ -6,4 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello World :)"
+  checkout-repository:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "cloning the repository usinf actions/checkout@v4"
+      - run: ls
 
