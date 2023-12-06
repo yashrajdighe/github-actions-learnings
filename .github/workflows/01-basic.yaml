@@ -1,0 +1,9 @@
+name: basic-actions
+run-name: ${{ github.actor }} is learning Github Actions
+on: [push, workflow_dispatch]
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello World :)"
+
