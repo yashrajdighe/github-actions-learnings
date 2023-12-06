@@ -12,4 +12,8 @@ jobs:
       - uses: actions/checkout@v4
       - run: echo "cloning the repository using actions/checkout@v4"
       - run: ls
+  display-basic-info:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ toJSON(github) }}"
 
