@@ -16,4 +16,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "${{ toJSON(github) }}"
+      - run: echo "Job Name: ${{ toJSON(github.job) }}"
 
