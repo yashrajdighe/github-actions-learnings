@@ -5,7 +5,8 @@ on:
     types: [opened]
 jobs:
   comment-on-issue-action:
-    permissions: write-all
+    permissions:
+      issues: write
     runs-on: ubuntu-latest
     steps:
       - name: Add comment
