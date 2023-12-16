@@ -21,6 +21,8 @@ jobs:
             [1]: https://github.com/peter-evans/create-or-update-comment
           reactions: '+1'
   comment-on-issue-with-cli:
+    permissions:
+      issues: write
     runs-on: ubuntu-latest
     steps:
       - name: Create comment
