@@ -1,0 +1,14 @@
+name: call-test-action
+on:
+  workflow_dispatch:
+
+jobs:
+  outputs:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read    # This is required for actions/checkout
+    steps:
+      - uses: yashrajdighe/github-actions-learnings/actions/test@main
+        with:
+          ENV_TO_PRINT: "1.7.5"
