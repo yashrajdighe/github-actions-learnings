@@ -1,6 +1,6 @@
 name: call-test-action
 on:
-  workflow_dispatch:
+  push:
 
 jobs:
   outputs:
@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: yashrajdighe/github-actions-learnings/actions/test@main
         with:
-          ENV_TO_PRINT: "1.7.5"
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
