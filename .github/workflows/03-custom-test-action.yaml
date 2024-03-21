@@ -5,9 +5,7 @@ on:
 jobs:
   outputs:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write   # This is required for requesting the JWT
-      contents: read    # This is required for actions/checkout
+    permissions: write-all
     steps:
       - uses: yashrajdighe/github-actions-learnings/actions/test@main
         with:
