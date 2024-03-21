@@ -20,5 +20,7 @@ runs:
       echo "Event Name: ${{ github.event_name }}"
       echo "Actor: ${{ github.actor }}"
 
-      console.log(process.env.GITHUB_SERVER_URL)
-      console.log(process.env.GITHUB_REPOSITORY)
+      node --version
+
+      const run_url = process.env.GITHUB_SERVER_URL
+      const repo = process.env.GITHUB_REPOSITORY
