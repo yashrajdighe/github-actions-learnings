@@ -1,0 +1,21 @@
+name: slack-notification-workflow
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: terraform
+  cancel-in-progress: false
+
+jobs:
+  send-test-notification-using-webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send GitHub Action trigger data to Slack workflow
+        id: slack
+        uses: slackapi/slack-github-action@v1.25.0
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          channel-id: '${{ secrets.SLACK_NOTIFICATION_CHANNEL_ID }}'
+          slack-message: "GitHub build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
