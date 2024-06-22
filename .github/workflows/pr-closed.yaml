@@ -1,8 +1,8 @@
-name: Create Infrastructure
+name: Destroy Infrastructure
 
 on:
   pull_request:
-    types: [opened, labeled]
+    types: [closed]
 
 jobs:
   check_label:
@@ -24,7 +24,7 @@ jobs:
             echo "::set-output name=label_found::false"
           fi
 
-  create_infrastructure: # should run only if a pull_request is opened or reopened with label create_infra
+  destroy_infrastructure: # should run only if a pull_request is closed with label create_infra
     needs: check_label
     runs-on: ubuntu-latest
     if: needs.check_label.outputs.label_found == 'true'
