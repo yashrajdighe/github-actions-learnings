@@ -29,7 +29,7 @@ jobs:
   create_infrastructure: # should run only if a pull_request is opened or reopened with label create_infra
     needs: check_label
     runs-on: ubuntu-latest
-    if: ${{ env.SKIP_JOB }} == "true"
+    if: ${env.SKIP_JOB} == "true"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
