@@ -19,15 +19,17 @@ jobs:
           if echo "$PR_LABELS" | grep -q "create_infra"; then
             echo "Label 'create_infra' found."
             echo "::set-output name=label_found::true"
+            echo "SKIP_JOB=false" >> $GITHUB_ENV
           else
             echo "Label 'create_infra' not found."
             echo "::set-output name=label_found::false"
+            echo "SKIP_JOB=true" >> $GITHUB_ENV
           fi
 
   create_infrastructure: # should run only if a pull_request is opened or reopened with label create_infra
     needs: check_label
     runs-on: ubuntu-latest
-    if: needs.check_label.outputs.label_found == 'true'
+    if: ${{ env.SKIP_JOB }} == "true"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
