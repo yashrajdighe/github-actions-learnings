@@ -2,7 +2,7 @@ name: Create Infrastructure
 
 on:
   pull_request:
-    types: [opened, labeled]
+    types: [opened, reopened, labeled]
 
 jobs:
   check_label:
