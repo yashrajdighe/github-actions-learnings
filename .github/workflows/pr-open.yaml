@@ -1,0 +1,33 @@
+name: Create Infrastructure
+
+on:
+  pull_request:
+    types: [opened, labeled]
+
+jobs:
+  check_label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Check for label
+        id: check_label
+        run: |
+          PR_LABELS=$(jq -r '.pull_request.labels[].name' $GITHUB_EVENT_PATH)
+          echo "Labels: $PR_LABELS"
+          if echo "$PR_LABELS" | grep -q "create_infra"; then
+            echo "Label 'create_infra' found."
+            echo "::set-output name=label_found::true"
+          else
+            echo "Label 'create_infra' not found."
+            echo "::set-output name=label_found::false"
+          fi
+
+  create_infrastructure:
+    needs: check_label
+    runs-on: ubuntu-latest
+    if: needs.check_label.outputs.label_found == 'true'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
