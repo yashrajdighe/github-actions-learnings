@@ -29,6 +29,7 @@ jobs:
           done
     outputs:
       are_files_changed: ${{ steps.changed-files.outputs.any_changed }}
+      changed_files: ${{ steps.changed-files.outputs.all_changed_files }}
   yamllint:
     needs: [changed_files]
     if: needs.changed_files.outputs.are_files_changed == 'true'
@@ -47,4 +48,4 @@ jobs:
         pip install --user yamllint
     - name: Analysing the code with pylint
       run: |
-        yamllint $(git ls-files '*.yaml' '*.yml')
+        yamllint ${{ needs.changed_files.outputs.changed_files }}
