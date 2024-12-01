@@ -14,22 +14,24 @@ jobs:
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v45
-        # with:
-        #   # Avoid using single or double quotes for multiline patterns
-        #   files: |
-        #     **.yaml
-        #     **.yml
+        with:
+          # Avoid using single or double quotes for multiline patterns
+          files: |
+            **.yaml
+            **.yml
       - name: List all changed files
-        # if: steps.changed_files.outputs.any_changed == 'true'
+        if: steps.changed-files.outputs.any_changed == 'true'
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
           for file in ${ALL_CHANGED_FILES}; do
             echo "$file was changed"
           done
+    outputs:
+      are_files_changed: ${{ steps.changed-files.outputs.any_changed }}
   yamllint:
     needs: [changed_files]
-    if: needs.changed_files.outputs.any_changed == 'true'
+    if: needs.changed_files.outputs.are_files_changed == 'true'
     runs-on: ubuntu-latest
     env:
         python-version: 3.13.0
