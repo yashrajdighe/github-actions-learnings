@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Get changed-files
     steps:
-      - uses: actions/checkout@cbb722410c2e876e24abbe8de2cc27693e501dcb # v4.2.2
+      - uses: actions/checkout@cbb722410c2e876e24abbe8de2cc27693e501dcb
+         # v4.2.2
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v45
@@ -38,9 +39,11 @@ jobs:
     env:
       python-version: 3.13.0
     steps:
-      - uses: actions/checkout@cbb722410c2e876e24abbe8de2cc27693e501dcb # v4.2.2
+      - uses: actions/checkout@cbb722410c2e876e24abbe8de2cc27693e501dcb
+        # v4.2.2
       - name: Set up Python ${{ env.python-version }}
-        uses: actions/setup-python@55aad42e4674b58b2b2fb7d8e7552402d922b4e7 #v5.3.0
+        uses: actions/setup-python@55aad42e4674b58b2b2fb7d8e7552402d922b4e7
+        #v5.3.0
         with:
           python-version: ${{ env.python-version }}
       - name: Install dependencies
