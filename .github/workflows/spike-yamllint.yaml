@@ -44,7 +44,7 @@ jobs:
       # v4.2.2
       - name: Set up Python ${{ env.python-version }}
         uses: actions/setup-python@55aad42e4674b58b2b2fb7d8e7552402d922b4e7
-      # v5.3.0
+        # v5.3.0
         with:
           python-version: ${{ env.python-version }}
       - name: Install dependencies
