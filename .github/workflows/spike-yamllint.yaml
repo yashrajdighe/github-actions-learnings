@@ -20,6 +20,7 @@ jobs:
             **.yaml
             **.yml
       - name: List all changed files
+        if: steps.changed_files.outputs.any_changed == 'true'
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
@@ -27,6 +28,8 @@ jobs:
             echo "$file was changed"
           done
   yamllint:
+    needs: [changed_files]
+    if: ${{ steps.changed_files.outputs.any_changed == 'true'}}
     runs-on: ubuntu-latest
     env:
         python-version: 3.13.0
